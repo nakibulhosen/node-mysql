@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const mysql = require('mysql');
 
@@ -15,6 +16,10 @@ const db = mysql.createConnection({
 db.connect((err) => {
     if (err) throw err;
     console.log('MySQL Database Connected')
+})
+
+app.get('/',(req,res)=>{
+    res.send('Welcome to the application')
 })
 
 // starting the express server 
