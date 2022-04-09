@@ -105,6 +105,20 @@ app.post('/updatepost', (req, res) => {
     })
 })
 
+// Delete post 
+
+app.post('/deletepost', (req, res) => {
+    let sqlQuery = `delete from posts where id = ${req.body.postid}`;
+    db.query(sqlQuery, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            res.send(result)
+        }
+    })
+})
+
 
 
 // starting the express server 
