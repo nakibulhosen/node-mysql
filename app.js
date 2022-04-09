@@ -66,6 +66,26 @@ app.get('/posts', (req, res) => {
     })
 })
 
+// Get single Post
+
+app.post('/post', (req, res) => {
+    let sqlQuery = `select * from posts where id = ${req.body.postid}`;
+    db.query(sqlQuery, (err, result) => {
+        if (err) {
+            console.log(err);
+            res.send(err);
+        } else {
+            const post = [...result]
+            const resultWithMessage = { post: post, message: "Get post successfully" }
+            if (post.length) {
+                res.send(resultWithMessage)
+            } else {
+                res.send({ message: "No post found!" })
+            }
+        }
+    })
+})
+
 // starting the express server 
 app.listen('3000', () => {
     console.log('App is listening to port 3000');
