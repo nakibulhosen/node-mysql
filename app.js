@@ -60,7 +60,8 @@ app.get('/posts', (req, res) => {
             console.log(err);
             res.send(err);
         } else {
-            res.send({ ...result, message: "Get all post successfully" })
+            const newResult = [{ ...result, message: "Get all posts successfully" }]
+            res.send(newResult)
         }
     })
 })
