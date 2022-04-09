@@ -60,8 +60,13 @@ app.get('/posts', (req, res) => {
             console.log(err);
             res.send(err);
         } else {
-            const newResult = [{ ...result, message: "Get all posts successfully" }]
-            res.send(newResult)
+            const posts = [...result]
+            const resultWithMessage = { posts: posts, message: "Get all posts successfully" }
+            if (posts.length) {
+                res.send(resultWithMessage)
+            } else {
+                res.send({ message: "No post found!" })
+            }
         }
     })
 })
