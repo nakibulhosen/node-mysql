@@ -1,4 +1,3 @@
-const { response } = require('express');
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
@@ -19,14 +18,14 @@ const db = mysql.createConnection({
 })
 
 db.connect((err) => {
-    if (err) throw err;
+    if (err) console.log(err);
     console.log('MySQL Database Connected')
 })
 
 app.get('/', (req, res) => {
     let sqlQuery = 'select * from demo';
     db.query(sqlQuery, (err, result) => {
-        if (err) throw err;
+        if (err) console.log(err);
         // const sqlData = JSON.parse(result);
         console.log(result)
         res.send({ ...result, message: 'Database Connected Here are the data from the database' })
